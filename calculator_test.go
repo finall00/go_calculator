@@ -39,16 +39,18 @@ func TestMul(t *testing.T) {
 }
 
 func TestDiv(t *testing.T) {
-	if Div(6, 3) != 2 {
-		t.Errorf("Div(6, 3) = %d; want 2", Div(6, 3))
+	result, err := Div(6, 3)
+	if err != nil || result != 2 {
+		t.Errorf("Div(6, 3) = %f, %v; want 2, nil", result, err)
 	}
-	if Div(-4, 2) != -2 {
-		t.Errorf("Div(-4, 2) = %d; want -2", Div(-4, 2))
+
+	result, err = Div(5, 0)
+	if err == nil {
+		t.Errorf("Div(5, 0) = %f, %v; want error", result, err)
 	}
-	defer func() {
-		if r := recover(); r == nil {
-			t.Errorf("Div(1, 0) did not panic")
-		}
-	}()
-	Div(1, 0)
+
+	result, err = Div(-6, -3)
+	if err != nil || result != 2 {
+		t.Errorf("Div(-6, -3) = %f, %v; want 2, nil", result, err)
+	}
 }
