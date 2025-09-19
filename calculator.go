@@ -33,6 +33,7 @@ func Div(a, b float64) (float64, error) {
 }
 
 func main() {
+	fmt.Printf("Calculator Version: %s\n", Version)
 	programName := filepath.Base(os.Args[0])
 	if len(os.Args) != 4 {
 		fmt.Printf("Usage: %s <add|sub|mult|div> <num1> <num2>\n", programName)
